@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.parking.mapper.ParkingRecordMapper">
+    <insert id="insertRecord">
+        INSERT INTO parking_records(plate_num, spot_id, entry_time) VALUES(#{plateNum}, #{spotId}, #{entryTime})
+    </insert>
+    <update id="updateRecord">
+        UPDATE parking_records SET exit_time = #{exitTime}, payment = #{payment} WHERE record_id = #{recordId}
+    </update>
+    <select id="getActiveRecordBySpotId" resultType="com.example.parking.model.ParkingRecord">
+        SELECT * FROM parking_records WHERE spot_id = #{spotId} AND exit_time IS NULL
+    </select>
+    <select id="getRecordById" resultType="com.example.parking.model.ParkingRecord">
+        SELECT * FROM parking_records WHERE record_id = #{recordId}
+    </select>
+    <select id="getAllRecords" resultType="com.example.parking.model.ParkingRecord">
+        SELECT * FROM parking_records ORDER BY entry_time DESC
+    </select>
+</mapper>

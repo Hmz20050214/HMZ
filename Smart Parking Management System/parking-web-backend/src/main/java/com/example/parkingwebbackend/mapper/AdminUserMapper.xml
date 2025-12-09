@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.parking.mapper.AdminUserMapper">
+    <select id="getUserByUsername" resultType="com.example.parking.model.AdminUser">
+        SELECT * FROM admin_users WHERE username = #{username}
+    </select>
+    <insert id="insertUser">
+        INSERT INTO admin_users(username, password, real_name) VALUES(#{username}, #{password}, #{realName})
+    </insert>
+    <update id="updateUser">
+        UPDATE admin_users SET password = #{password}, real_name = #{realName} WHERE user_id = #{userId}
+    </update>
+    <delete id="deleteUser">
+        DELETE FROM admin_users WHERE user_id = #{userId}
+    </delete>
+</mapper>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.parking.mapper.FeeRuleMapper">
+    <select id="getLatestRule" resultType="com.example.parking.model.FeeRule">
+        SELECT * FROM fee_rules ORDER BY rule_id DESC LIMIT 1
+    </select>
+    <insert id="insertRule">
+        INSERT INTO fee_rules(base_price, free_minutes, daily_cap) VALUES(#{basePrice}, #{freeMinutes}, #{dailyCap})
+    </insert>
+    <update id="updateRule">
+        UPDATE fee_rules SET base_price = #{basePrice}, free_minutes = #{freeMinutes}, daily_cap = #{dailyCap} WHERE rule_id = #{ruleId}
+    </update>
+</mapper>

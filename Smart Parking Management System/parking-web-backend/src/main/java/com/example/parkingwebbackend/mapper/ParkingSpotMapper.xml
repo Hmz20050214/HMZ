@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.parking.mapper.ParkingSpotMapper">
+    <select id="getAllSpots" resultType="com.example.parking.model.ParkingSpot">
+        SELECT * FROM parking_spots
+    </select>
+    <select id="getSpotById" resultType="com.example.parking.model.ParkingSpot">
+        SELECT * FROM parking_spots WHERE spot_id = #{spotId}
+    </select>
+    <update id="updateSpotStatus">
+        UPDATE parking_spots SET status = #{status} WHERE spot_id = #{spotId}
+    </update>
+    <insert id="insertSpot">
+        INSERT INTO parking_spots(spot_number, status, floor) VALUES(#{spotNumber}, #{status}, #{floor})
+    </insert>
+    <delete id="deleteSpot">
+        DELETE FROM parking_spots WHERE spot_id = #{spotId}
+    </delete>
+</mapper>
